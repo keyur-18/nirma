@@ -5,6 +5,8 @@ Marmik Patel
 Falgun Panchal
 
 
+
+
 # Solar Inverter Failure Prediction & Insights System
 
 This robust, intelligence-driven platform monitors, predicts, and explains solar inverter health. It utilizes advanced machine learning prediction models, a real-time telemetry simulator, a React-based frontend dashboard, an Express/Node.js API backend, and local LLM agents (powered by Ollama and LangChain) to provide deep, conversational insights and executive summaries about inverter performance.
@@ -19,7 +21,7 @@ This robust, intelligence-driven platform monitors, predicts, and explains solar
 ---
 
 ## 🏗️ Architecture Overview
-
+![Solar Inverter Architecture](architecture.png)
 The system is split into three main architectural pillars:
 
 ### 1. Frontend Client (`/web/Client`)
