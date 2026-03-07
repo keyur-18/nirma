@@ -1,0 +1,173 @@
+1️⃣ Why role Exists in user.model.js
+
+In your schema we defined:
+
+role: {
+  type: String,
+  enum: ["admin", "operator"],
+  default: "operator"
+}
+
+Meaning:
+
+Role	Purpose
+admin	full system access
+operator	limited access
+
+This is called Role-Based Access Control (RBAC).
+
+2️⃣ Why We Didn't Send Role During Register
+
+Because we set:
+
+default: "operator"
+
+So when a user registers:
+
+{
+  "name": "Falgun",
+  "email": "falgun@test.com",
+  "password": "123456"
+}
+
+MongoDB automatically stores:
+
+{
+  "name": "Falgun",
+  "email": "falgun@test.com",
+  "password": "...hashed...",
+  "role": "operator"
+}
+
+So role is automatically assigned.
+
+3️⃣ Why Role Is Important for Your Hackathon Project
+
+Your system has different responsibilities.
+
+Example:
+
+Admin
+
+Can:
+
+create inverter
+delete inverter
+view all users
+manage system
+Operator
+
+Can:
+
+view dashboard
+view predictions
+view telemetry
+
+So we restrict APIs.
+
+4️⃣ Example Role Protection Middleware
+
+Create:
+
+middleware/role.middleware.js
+const authorizeRoles = (...roles) => {
+  return (req, res, next) => {
+
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        message: "Access denied"
+      });
+    }
+
+    next();
+  };
+};
+
+export default authorizeRoles;
+5️⃣ Example Usage
+
+Example in inverter routes:
+
+router.post(
+  "/",
+  protect,
+  authorizeRoles("admin"),
+  createInverter
+);
+
+Meaning:
+
+admin → allowed
+operator → denied
+6️⃣ Example Real Flow
+User Login
+     │
+     ▼
+JWT created
+     │
+     ▼
+Token decoded
+     │
+     ▼
+req.user = {
+   id,
+   role
+}
+     │
+     ▼
+Role middleware checks access
+7️⃣ Example Database Record
+{
+  "_id": "user123",
+  "name": "Falgun",
+  "email": "falgun@test.com",
+  "password": "hashedPassword",
+  "role": "operator"
+}
+
+Admin example:
+
+{
+  "name": "Admin",
+  "email": "admin@test.com",
+  "role": "admin"
+}
+8️⃣ How to Create Admin
+
+Option 1 (easiest for hackathon)
+
+Manually in MongoDB:
+
+{
+  "name": "Admin",
+  "email": "admin@test.com",
+  "password": "hashedPassword",
+  "role": "admin"
+}
+
+Option 2
+
+Allow role in register only for admin creation.
+
+9️⃣ Current Use in Your Project
+
+For your Solar Inverter System:
+
+Feature	Operator	Admin
+View dashboard	✅	✅
+View telemetry	✅	✅
+View predictions	✅	✅
+Create inverter	❌	✅
+Delete inverter	❌	✅
+Manage users	❌	✅
+🔟 My Recommendation for Hackathon
+
+Keep it simple:
+
+register → operator
+manual admin creation
+
+Then protect routes like:
+
+create inverter → admin
+delete inverter → admin

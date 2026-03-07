@@ -1,0 +1,73 @@
+backend folder structure
+server
+│
+├── src
+│
+├── config
+│   ├── db.js
+│   ├── env.js
+│
+├── controllers
+│   ├── predictionController.js
+│   ├── telemetryController.js
+│
+├── services
+│   ├── predictionService.js
+│   ├── aiSummaryService.js
+│
+├── models
+│   ├── inverterModel.js
+│   ├── telemetryModel.js
+│   ├── predictionModel.js
+│
+├── routes
+│   ├── predictionRoutes.js
+│   ├── telemetryRoutes.js
+│
+├── middleware
+│   ├── errorHandler.js
+│   ├── validateRequest.js
+│
+├── utils
+│   ├── logger.js
+│   ├── constants.js
+│
+├── validators
+│   ├── predictionValidator.js
+│
+├── app.js
+├── server.js
+
+
+frontend
+client
+│
+├── public
+│
+├── src
+│
+├── api
+│   ├── axiosClient.js
+│   ├── predictionApi.js
+│
+├── components
+│   ├── RiskCard.jsx
+│   ├── TrendChart.jsx
+│   ├── InverterList.jsx
+│   ├── SummaryPanel.jsx
+│
+├── pages
+│   ├── Dashboard.jsx
+│   ├── InverterDetails.jsx
+│
+├── hooks
+│   ├── usePredictions.js
+│
+├── utils
+│   ├── formatRisk.js
+│
+├── styles
+│   ├── dashboard.css
+│
+├── App.jsx
+├── main.jsx

@@ -1,0 +1,12 @@
+python-dotenv>=1.0.0
+numpy
+pandas
+langchain>=0.1.13
+langchain-community>=0.0.29
+faiss-cpu>=1.8.0
+pypdf>=4.1.0
+sentence-transformers>=2.2.2
+langchain-ollama>=0.1.0
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pymongo
