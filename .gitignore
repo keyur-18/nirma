@@ -1,5 +1,6 @@
-env
+.env
 data
 __pycache__
 main.py
 test_summary.py
+node_modules

@@ -91,7 +91,12 @@ export const getLatestRiskByInverter = asyncHandler(async (req, res) => {
 
   const result = data.map(item => ({
     inverterId: item.latest.inverter_id,
-    riskScore: item.latest.risk_score
+    riskScore: item.latest.risk_score,
+    power: item.latest.power,
+    pvPower: item.latest.pv_power,
+    temp: item.latest.temp,
+    freq: item.latest.freq,
+    ambientTemp: item.latest.ambient_temp,
   }));
 
   res.json({
