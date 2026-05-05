@@ -1,18 +1,12 @@
-function TrendChart() {
+/**
+ * Trend Card Component
+ * Note: This component has been replaced with InverterTrendChart
+ * for better chart implementation with Recharts
+ */
+import InverterTrendChart from './InverterTrendChart';
 
-  return (
-    <div className="bg-white shadow rounded p-6">
-
-      <h3 className="text-lg font-semibold mb-4">
-        Inverter Trend
-      </h3>
-
-      <div className="h-64 flex items-center justify-center text-gray-500">
-        Chart will appear here
-      </div>
-
-    </div>
-  );
+function TrendChart(props) {
+  return <InverterTrendChart {...props} />;
 }
 
 export default TrendChart;
